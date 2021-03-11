@@ -11,6 +11,23 @@ const Login = () => {
   const [name, setName] = useState("");
   const [profilePic, setProfilePic] = useState("");
   const dispatch = useDispatch();
+
+  const loginToApp = (e) => {
+    e.preventDefault();
+    auth
+      .signInWithEmailAndPassword(email, password)
+      .then((userAuth) => {
+        dispatch(
+          login({
+            email: userAuth.user.email,
+            uid: userAuth.user.uid,
+            displayName: userAuth.user.displayName,
+            profileUrl: userAuth.user.photoUrl,
+          })
+        );
+      })
+      .catch((error) => alert(error));
+  };
   const register = () => {
     if (!name) {
       return alert("Please enter a full name!");
@@ -29,29 +46,14 @@ const Login = () => {
                 email: userAuth.user.email,
                 uid: userAuth.user.uid,
                 displayName: name,
-                photoURL: profilePic,
+                photoUrl: profilePic,
               })
             );
           });
       })
       .catch((error) => alert(error));
   };
-  const loginToApp = (e) => {
-    e.preventDefault();
-    auth
-      .signInWithEmailAndPassword(email, password)
-      .then((userAuth) => {
-        dispatch(
-          login({
-            email: userAuth.user.email,
-            uid: userAuth.user.uid,
-            displayName: userAuth.user.displayName,
-            profileUrl: userAuth.user.photoUrl,
-          })
-        );
-      })
-      .catch((error) => alert(error));
-  };
+
   return (
     <div className="login">
       <img

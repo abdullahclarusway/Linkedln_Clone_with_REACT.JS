@@ -22,7 +22,7 @@ function App() {
             email: userAuth.email,
             uid: userAuth.uid,
             displayName: userAuth.displayName,
-            photoURL: userAuth.photoURL,
+            photoUrl: userAuth.photoURL,
           })
         );
       } else {
@@ -41,7 +41,7 @@ function App() {
         <div className="app__body">
           <Sidebar />
           <Feed />
-          <Widget/>
+          <Widget />
         </div>
       )}
       {/* App Body */}
